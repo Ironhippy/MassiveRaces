@@ -1,0 +1,5 @@
+name: MassiveRaces
+version: 2.13.0-SNAPSHOT
+main: net.graystone.java.races.MassiveRaces
+authors: [Ironhippy, Flashera]
+depend: [MassiveCore]
