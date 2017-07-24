@@ -1,0 +1,47 @@
+package net.graystone.java.races.command;
+
+import java.util.LinkedHashMap;
+
+import com.massivecraft.massivecore.MassiveException;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.util.TimeDiffUtil;
+import com.massivecraft.massivecore.util.TimeUnit;
+import com.massivecraft.massivecore.util.Txt;
+
+import net.graystone.java.races.Perm;
+import net.graystone.java.races.command.type.TypeMPlayer;
+import net.graystone.java.races.command.type.TypeRace;
+import net.graystone.java.races.entity.MPlayer;
+import net.graystone.java.races.entity.MRace;
+
+public class CmdBe extends RaceCommand
+{
+	
+	public CmdBe()
+	{
+		this.addAliases("be");
+		this.setDesc("become a race");
+		this.addParameter(TypeRace.get(), "raceType");
+		this.addParameter(player, TypeMPlayer.get(), "playerName");
+		
+		this.addRequirements(RequirementHasPerm.get(Perm.BE.toString()));
+	}
+	
+	@Override
+	public void perform() throws MassiveException
+	{
+		MRace targetRace = this.readArg();
+		
+		if (targetRace.equals(targetRace)) { message(Txt.parse("<i>you already belong to the race <pink>"+targetRace.getName()+"<i>.")); return; }
+		MPlayer player = this.readArg();
+		
+		LinkedHashMap<TimeUnit, Long> cooldownTimeRaw = TimeDiffUtil.unitcounts(player.getNextSwitchTime(), TimeUnit.getAllButMillis());
+		
+		String cooldownTime = TimeDiffUtil.formatedVerboose(cooldownTimeRaw, "<i>");
+		
+		if (!player.canSwitch()) { message(Txt.parse("<i>You have changed races already within the <pink>past day<i>.\nYou may change races again in "+cooldownTime+"<i>.")); return; }
+		
+		player.setRace(targetRace);
+		player.setSwitch(System.currentTimeMillis());
+	}
+}
