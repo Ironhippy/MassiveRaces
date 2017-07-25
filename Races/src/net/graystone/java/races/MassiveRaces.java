@@ -4,6 +4,7 @@ import com.massivecraft.massivecore.MassivePlugin;
 
 import net.graystone.java.races.command.CmdRace;
 import net.graystone.java.races.engine.LoginEngine;
+import net.graystone.java.races.engine.VanillaEngine;
 import net.graystone.java.races.entity.MConfColl;
 import net.graystone.java.races.entity.MPlayerColl;
 import net.graystone.java.races.entity.MRaceColl;
@@ -25,6 +26,7 @@ public class MassiveRaces extends MassivePlugin
 				      MPlayerColl.get(),
 				      
 				      LoginEngine.get(),
+				      VanillaEngine.get(),
 				      
 				      CmdRace.get());
 	}
