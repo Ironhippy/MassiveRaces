@@ -1,7 +1,5 @@
 package net.graystone.java.races.entity;
 
-import org.apache.logging.log4j.Level;
-
 import com.massivecraft.massivecore.store.SenderEntity;
 import com.massivecraft.massivecore.util.TimeUnit;
 
@@ -16,9 +14,9 @@ public class MPlayer extends SenderEntity<MPlayer>
 	public boolean setRace(MRace arg0) { if (!canSwitch()) return false; this.raceId = arg0.getId(); this.changed(); return true; }
 	public MRace getRace()
 	{
-		if (raceId==null) { MassiveRaces.get().log(Level.ERROR, "The player <pink>"+this.getName()+"'s <rose>data is corrupted."); return null; }
+		if (raceId==null) { System.out.println("The player <pink>"+this.getName()+"'s <rose>data is corrupted."); return null; }
 		MRace ret = MRaceColl.get().get(raceId);
-		if (ret==null) { MassiveRaces.get().log(Level.ERROR, "There was an error retrieving the race <pink>"+raceId+"<rose>."); return null; }
+		if (ret==null) {  System.out.println("There was an error retrieving the race <pink>"+raceId+"<rose>."); return null; }
 		
 		return ret;
 	}
