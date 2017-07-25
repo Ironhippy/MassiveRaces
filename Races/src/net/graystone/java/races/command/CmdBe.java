@@ -43,5 +43,7 @@ public class CmdBe extends RaceCommand
 		
 		player.setRace(targetRace);
 		player.setSwitch(System.currentTimeMillis());
+		
+		message(Txt.parse("<pink>Your character <i>has become a: <pink>"+targetRace.getName()+"<i>."));
 	}
 }

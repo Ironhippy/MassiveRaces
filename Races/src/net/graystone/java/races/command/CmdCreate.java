@@ -33,6 +33,8 @@ public class CmdCreate extends RaceCommand
 		MRaceColl.get().create()
 		               .setName(raceName)
 		               .setPermissionRequired(permissionRequired);
+		
+		message(Txt.parse("<i>Successfully <pink>created <i>a new playable race titled: <pink>"+raceName+"<i>."));
 	}
 	
 }

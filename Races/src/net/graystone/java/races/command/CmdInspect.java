@@ -30,6 +30,6 @@ public class CmdInspect extends RaceCommand
 		
 		String name = player.getRace().getName();
 		
-		message(Txt.parse("<i>"+player.getName()+" is a(n) <pink>"+name+"<i>."));
+		message(Txt.parse("<i>"+player.getName()+" is a: <pink>"+name+"<i>."));
 	}
 }
