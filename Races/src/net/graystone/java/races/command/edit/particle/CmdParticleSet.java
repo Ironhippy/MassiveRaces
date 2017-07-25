@@ -1,11 +1,12 @@
 package net.graystone.java.races.command.edit.particle;
 
+import org.bukkit.Particle;
+
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.command.type.enumeration.TypeParticleEffect;
-import com.massivecraft.massivecore.particleeffect.ParticleEffect;
 import com.massivecraft.massivecore.util.Txt;
 
 import net.graystone.java.races.command.RaceCommand;
+import net.graystone.java.races.command.type.TypeParticle;
 import net.graystone.java.races.command.type.TypeRace;
 import net.graystone.java.races.entity.MRace;
 
@@ -18,17 +19,17 @@ public class CmdParticleSet extends RaceCommand
 		this.setDesc("set a race's visisble particle effect");
 		
 		this.addParameter(TypeRace.get(), "raceName");
-		this.addParameter(TypeParticleEffect.get(), "particleEffect");
+		this.addParameter(TypeParticle.get(), "particleEffect");
 	}
 	
 	@Override
 	public void perform() throws MassiveException
 	{
 		MRace targetRace = this.readArg();
-		ParticleEffect targetEffect = this.readArg();
+		Particle targetEffect = this.readArg();
 		
 		targetRace.setParticleEffect(targetEffect);
 		
-		message(Txt.parse("<i>The <pink>"+targetRace.getName()+"'s particle effect <i>has been assigned to <pink>"+targetEffect.getName()+"<i>."));
+		message(Txt.parse("<i>The <pink>"+targetRace.getName()+"'s particle effect <i>has been assigned to <pink>"+targetEffect.name()+"<i>."));
 	}
 }
