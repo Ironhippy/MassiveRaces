@@ -44,10 +44,10 @@ public class MRace extends Entity<MRace>
 	public boolean removePotionEffect(PotionEffectType arg0) { if (!containsPotionEffect(arg0)) return false; this.potionEffectTypes.remove( arg0.getName() ); this.changed(); return true; }
 	public boolean containsPotionEffect(PotionEffectType arg0) { return this.potionEffectTypes.contains( PotionEffectType.getByName(arg0.getName()) ); }
 	
-	private List<String> particleEffectTypes = new MassiveList<String>();
-	public boolean addParticleEffect(ParticleEffect arg0) { if (containsParticleEffect(arg0)) return false; this.particleEffectTypes.add(arg0.getName()); this.changed(); return true; }
-	public boolean removeParticleEffect(ParticleEffect arg0) { if (! containsParticleEffect(arg0)) return false; this.particleEffectTypes.remove(arg0.getName()); this.changed(); return true; }
-	public boolean containsParticleEffect(ParticleEffect arg0) { return this.particleEffectTypes.contains(arg0.getName()); }
+	private String particleEffect;
+	public void setParticleEffect(ParticleEffect arg0) { this.particleEffect = arg0.getName(); this.changed(); }
+	public ParticleEffect getParticleEffect() { return ParticleEffect.fromName(id); }
+	public boolean hasParticleEffect(ParticleEffect arg0) { if(particleEffect == null) return false; if (arg0.getName().equalsIgnoreCase(particleEffect)) return true; return false; }
 	
 	public boolean equals(MRace race) { if (this.getId().equalsIgnoreCase(race.getId())) return true; return false; }
 	
