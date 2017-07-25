@@ -2,10 +2,10 @@ package net.graystone.java.races.entity;
 
 import java.util.List;
 
+import org.bukkit.Particle;
 import org.bukkit.potion.PotionEffectType;
 
 import com.massivecraft.massivecore.collections.MassiveList;
-import com.massivecraft.massivecore.particleeffect.ParticleEffect;
 import com.massivecraft.massivecore.store.Entity;
 
 public class MRace extends Entity<MRace>
@@ -45,9 +45,9 @@ public class MRace extends Entity<MRace>
 	public boolean containsPotionEffect(PotionEffectType arg0) { return this.potionEffectTypes.contains( PotionEffectType.getByName(arg0.getName()) ); }
 	
 	private String particleEffect;
-	public void setParticleEffect(ParticleEffect arg0) { this.particleEffect = arg0.getName(); this.changed(); }
-	public ParticleEffect getParticleEffect() { return ParticleEffect.fromName(id); }
-	public boolean hasParticleEffect(ParticleEffect arg0) { if(particleEffect == null) return false; if (arg0.getName().equalsIgnoreCase(particleEffect)) return true; return false; }
+	public void setParticleEffect(Particle arg0) { this.particleEffect = arg0.name(); this.changed(); }
+	public Particle getParticleEffect() { return Particle.valueOf(particleEffect); }
+	public boolean hasParticleEffect() { if(particleEffect == null) return false; return true; }
 	
 	public boolean equals(MRace race) { if (this.getId().equalsIgnoreCase(race.getId())) return true; return false; }
 	
