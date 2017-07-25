@@ -32,7 +32,7 @@ public class CmdBe extends RaceCommand
 	{
 		MRace targetRace = this.readArg();
 		
-		if (targetRace.equals(targetRace)) { message(Txt.parse("<i>you already belong to the race <pink>"+targetRace.getName()+"<i>.")); return; }
+		if (senderRace.equals(targetRace)) { message(Txt.parse("<rose>You already belong to the <pink>"+targetRace.getName()+"<rose> race.")); return; }
 		MPlayer player = this.readArg();
 		
 		LinkedHashMap<TimeUnit, Long> cooldownTimeRaw = TimeDiffUtil.unitcounts(player.getNextSwitchTime(), TimeUnit.getAllButMillis());
