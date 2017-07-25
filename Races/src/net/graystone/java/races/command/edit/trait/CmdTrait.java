@@ -14,6 +14,7 @@ public class CmdTrait extends RaceCommand
 		this.setDesc("edit a race's trait settings");
 		
 		this.addChild(new CmdTraitAdd());
+		this.addChild(new CmdTraitRemove());
 	}
 	
 	@Override
