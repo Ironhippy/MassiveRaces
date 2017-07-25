@@ -11,7 +11,7 @@ public class MConf extends Entity<MConf>
 	protected static transient MConf i;
 	public static MConf get() { return MConf.i; }
 	
-	private String defaultRace = "Human";
+	private String defaultRace = "Default";
 	public String getDefaultRace() { return this.defaultRace; }
 	
 	private List<String> commandAliases = MUtil.list("races", "race", "r");
