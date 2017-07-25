@@ -30,7 +30,7 @@ public class TypeMPlayer extends TypeAbstract<MPlayer>
 	@Override
 	public Collection<String> getTabList(CommandSender sender, String arg)
 	{
-		return MPlayerColl.getNames();
+		return MPlayerColl.get().getPlayerNames();
 	}
 	
 }
