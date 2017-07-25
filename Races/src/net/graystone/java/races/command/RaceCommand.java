@@ -1,7 +1,5 @@
 package net.graystone.java.races.command;
 
-import org.bukkit.command.CommandSender;
-
 import com.massivecraft.massivecore.command.MassiveCommand;
 import com.massivecraft.massivecore.command.Visibility;
 
@@ -21,11 +19,11 @@ public class RaceCommand extends MassiveCommand
 	}
 	
 	@Override
-	public void senderFieldsOuter(CommandSender sender)
+	public void senderFields(boolean set)
 	{
-		super.senderFieldsOuter(sender);
+		super.senderFields(set);
 		
-		player = MPlayerColl.get().get(sender);
-		senderRace = player.getRace();
+		this.player = set ? MPlayerColl.get().get(sender) : null;
+		this.senderRace = set ? player.getRace() : null;
 	}
 }
