@@ -1,10 +1,15 @@
 package net.graystone.java.races.command.type;
 
-import com.massivecraft.massivecore.command.type.enumeration.TypeEnum;
+import java.util.Collection;
+
+import org.bukkit.command.CommandSender;
+
+import com.massivecraft.massivecore.MassiveException;
+import com.massivecraft.massivecore.command.type.TypeAbstract;
 
 import net.graystone.java.races.RaceTrait;
 
-public class TypeTrait extends TypeEnum<RaceTrait>
+public class TypeTrait extends TypeAbstract<RaceTrait>
 {
 	
 	private static TypeTrait i = new TypeTrait();
@@ -13,5 +18,17 @@ public class TypeTrait extends TypeEnum<RaceTrait>
 	public TypeTrait()
 	{
 		super(RaceTrait.class);
+	}
+
+	@Override
+	public RaceTrait read(String arg, CommandSender sender) throws MassiveException
+	{
+		return null;
+	}
+
+	@Override
+	public Collection<String> getTabList(CommandSender sender, String arg)
+	{
+		return RaceTrait.getArguments();
 	}
 }

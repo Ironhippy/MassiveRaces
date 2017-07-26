@@ -1,5 +1,9 @@
 package net.graystone.java.races;
 
+import java.util.List;
+
+import com.massivecraft.massivecore.collections.MassiveList;
+
 public enum RaceTrait
 {
 	
@@ -38,6 +42,17 @@ public enum RaceTrait
 			
 			ret = all;
 			break;
+		}
+		
+		return ret;
+	}
+	
+	public static List<String> getArguments()
+	{
+		List<String> ret = new MassiveList<String>();
+		for (RaceTrait all : RaceTrait.values())
+		{
+			ret.add(all.id);
 		}
 		
 		return ret;
