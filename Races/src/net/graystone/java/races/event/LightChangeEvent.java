@@ -22,6 +22,8 @@ public class LightChangeEvent extends EventMassiveCore
 	{
 		this.lightLocation = lightLocation;
 		this.lightLevel = lightLocation.getBlock().getLightFromSky();
+		
+		this.player = player;
 	}
 	
 	public Location getLocation() { return this.lightLocation; }
