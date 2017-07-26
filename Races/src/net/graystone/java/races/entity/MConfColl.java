@@ -19,12 +19,8 @@ public class MConfColl extends Coll<MConf>
 	@Override
 	public void setActive(boolean set)
 	{
-		if (! set) { super.setActive(set); return; }
-		
 		super.setActive(set);
-		
-		if (get().containsId("config")) { MConf.i = get().get("config"); return; }
-		
-		MConf.i = get().create("config");
+		if (! set) return;
+		MConf.i = get().get("config", true);
 	}
 }

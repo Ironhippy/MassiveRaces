@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Level;
 import com.massivecraft.massivecore.collections.MassiveList;
 import com.massivecraft.massivecore.store.Coll;
 import com.massivecraft.massivecore.store.MStore;
+import com.massivecraft.massivecore.util.Txt;
 
 import net.graystone.java.races.MassiveRaces;
 
@@ -25,15 +26,16 @@ public class MRaceColl extends Coll<MRace>
 	@Override
 	public void setActive(boolean set)
 	{
-		if (! set) { super.setActive(set); return; }
-		
 		super.setActive(set);
 		
-		if (get().containsRace(MConf.get().getDefaultRace())) return;
+		if (!set) return;
+		
+		if (get().containsId(MConf.get().getDefaultRace())) return;
 		
 		MRace defRace = get().create(MConf.get().getDefaultRace());
 		
 		defRace.setName(MConf.get().getDefaultRace());
+		defRace.setDefault(true);
 	}
 	
 	public MRace getByName(String arg0)
@@ -48,7 +50,7 @@ public class MRaceColl extends Coll<MRace>
 			break;
 		}
 		
-		if (ret == null) { MassiveRaces.get().log(Level.ERROR, "There was an error finding the race <pink>"+arg0+"<rose>."); return null; }
+		if (ret == null) { MassiveRaces.get().log(Level.ERROR, Txt.parse("There was an error finding the race <pink>"+arg0+"<rose>.")); return null; }
 		
 		return ret;
 	}
@@ -57,7 +59,7 @@ public class MRaceColl extends Coll<MRace>
 	public MRace get(Object oid)
 	{
 		MRace ret = super.get(oid);
-		if (ret == null) { MassiveRaces.get().log(Level.ERROR, "There was an error finding the race <pink>"+oid+"<rose>."); return null; }
+		if (ret == null) { MassiveRaces.get().log(Level.ERROR, Txt.parse("There was an error finding the race <pink>"+oid+"<rose>.")); return null; }
 		
 		return ret;
 	}
