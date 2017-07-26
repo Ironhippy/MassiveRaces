@@ -26,6 +26,10 @@ public class MassiveRaces extends MassivePlugin
 				      MRaceColl.get(),
 				      MPlayerColl.get(),
 				      
+				      LoginEngine.get(),
+				      TraitEngine.get(),
+				      VanillaEngine.get(),
+				      
 				      CmdRace.get());
 	}
 	
