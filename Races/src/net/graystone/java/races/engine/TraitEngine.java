@@ -40,7 +40,8 @@ public class TraitEngine extends Engine
 	@EventHandler
 	public void movedSunlight(LightChangeEvent event)
 	{
-		MRace playerRace = event.getPlayer().getRace();
+		MPlayer target = event.getPlayer();
+		MRace playerRace = target.getRace();
 		if (!playerRace.containsTrait(RaceTrait.FREEZE_DARKNESS) && !playerRace.containsTrait(RaceTrait.BURN_SUNLIGHT) &&
 			!playerRace.containsTrait(RaceTrait.FEED_DARKNESS) && !playerRace.containsTrait(RaceTrait.FEED_SUNLIGHT) &&
 			!playerRace.containsTrait(RaceTrait.HEAL_DARKNESS) && !playerRace.containsTrait(RaceTrait.HEAL_SUNLIGHT)) return;
