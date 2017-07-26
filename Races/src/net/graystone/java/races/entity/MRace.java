@@ -2,7 +2,10 @@ package net.graystone.java.races.entity;
 
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
 import com.massivecraft.massivecore.collections.MassiveList;
@@ -44,6 +47,13 @@ public class MRace extends Entity<MRace>
 	
 	public boolean isParent() { if (subraceIds.size()>0) return true; return false; }
 	
+	private ItemStack raceMaterial = new ItemStack(Material.EMERALD, 1);
+	public void setMaterial(Material arg0) { this.raceMaterial = new ItemStack(arg0, 1); this.changed(); }
+	public ItemStack getMaterial() { return this.raceMaterial; }
+	
+	private String raceSound = Sound.ENTITY_CHICKEN_AMBIENT.name();
+	public void setSound(Sound arg0) { this.raceSound = arg0.name(); this.changed(); }
+	public Sound getSound() { return Sound.valueOf(raceSound); }
 	
 	private List<String> potionEffectTypes = new MassiveList<String>();
 	public boolean addPotionEffect(PotionEffectType arg0) { if (containsPotionEffect(arg0)) return false; this.potionEffectTypes.add( arg0.getName() ); this.changed(); return true; }
