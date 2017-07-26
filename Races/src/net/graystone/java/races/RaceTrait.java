@@ -3,28 +3,31 @@ package net.graystone.java.races;
 public enum RaceTrait
 {
 	
-	FLY_WATER("flyWater"),
-	FLY("flySky"),
-	GLIDE("glideSky"),
-	FEED_WATER("feedWater"),
-	FEED_SUNLIGHT("feedSunlight"),
-	FEED_DARKNESS("feedDarkness"),
-	HEAL_DARKNESS("healDarkness"),
-	HEAL_SUNLIGHT("healSunlight"),
-	HEAL_WATER("healWater"),
-	FIRE_IMMUNITY("immuneFire"),
-	LAVA_IMMUNITY("immuneLava"),
-	BURN_SUNLIGHT("burnSunlight"),
-	FREEZE_DARKNESS("freezeDarkness"),
-	WEAKNESS_SUN("weaknessSun");
+	FLY_WATER("flyWater", 0),
+	FLY("flySky", 0),
+	GLIDE("glideSky", 0),
+	FEED_WATER("feedWater", 0),
+	FEED_SUNLIGHT("feedSunlight", 0),
+	FEED_DARKNESS("feedDarkness", 0),
+	HEAL_DARKNESS("healDarkness", 0),
+	HEAL_SUNLIGHT("healSunlight", 0),
+	HEAL_WATER("healWater", 0),
+	FIRE_IMMUNITY("immuneFire", 0),
+	LAVA_IMMUNITY("immuneLava", 0),
+	BURN_SUNLIGHT("burnSunlight", 1),
+	FREEZE_DARKNESS("freezeDarkness", 1),
+	WEAKNESS_SUN("weaknessSun", 1);
 	
 	private String id;
-	RaceTrait(String id)
+	private int positive;
+	RaceTrait(String id, int positive)
 	{
 		this.id = id;
+		this.positive = positive;
 	}
 	
 	public String toString() { return this.id; }
+	public boolean isPositive() { if (this.positive==0) return true; return false; }
 	
 	public RaceTrait fromString(String arg0)
 	{
