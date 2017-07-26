@@ -1,6 +1,7 @@
 package net.graystone.java.races.command;
 
 import java.util.LinkedHashMap;
+import java.util.TreeSet;
 
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
@@ -32,10 +33,13 @@ public class CmdBe extends RaceCommand
 	{
 		MRace targetRace = this.readArg();
 		
-		if (senderRace.equals(targetRace)) { message(Txt.parse("<rose>You already belong to the <pink>"+targetRace.getName()+"<rose> race.")); return; }
-		MPlayer player = this.readArg();
+		if (player.getRace().equals(targetRace)) { message(Txt.parse("<rose>You already belong to the <pink>"+targetRace.getName()+"<rose> race.")); return; }
+		MPlayer player = this.readArg(this.player);
 		
-		LinkedHashMap<TimeUnit, Long> cooldownTimeRaw = TimeDiffUtil.unitcounts(player.getNextSwitchTime(), TimeUnit.getAllButMillis());
+		long p1 = (player.getNextSwitchTime()-player.getLastSwitchTime())*10L;
+		TreeSet<TimeUnit> timeUnit = TimeUnit.getAllButMillis();
+		
+		LinkedHashMap<TimeUnit, Long> cooldownTimeRaw = TimeDiffUtil.unitcounts(p1, timeUnit);
 		
 		String cooldownTime = TimeDiffUtil.formatedVerboose(cooldownTimeRaw, "<i>");
 		
