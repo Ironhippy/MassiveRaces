@@ -14,7 +14,7 @@ public class CmdInfo extends RaceCommand
 	{
 		this.addAliases("info");
 		this.setDesc("information on races");
-		this.addParameter(senderRace, TypeRace.get(), "races");
+		this.addParameter(TypeRace.get(), "races");
 	}
 	
 	@Override
