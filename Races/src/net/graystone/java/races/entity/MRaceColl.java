@@ -30,12 +30,25 @@ public class MRaceColl extends Coll<MRace>
 		
 		if (!set) return;
 		
-		if (get().containsId(MConf.get().getDefaultRace())) return;
+		this.defaultRace();
+	}
+	
+	protected MRace defaultRace()
+	{
+		MRace defRace = get().get(MConf.get().getDefaultRace());
 		
-		MRace defRace = get().create(MConf.get().getDefaultRace());
+		if (defRace != null) return defRace;
+		
+		defRace = get().create(MConf.get().getDefaultRace());
+		
+		MassiveRaces.get().log(Txt.parse("<i>Beginning the creation of the <pink>"+defRace.getId()+" race<i>..."));
 		
 		defRace.setName(MConf.get().getDefaultRace());
 		defRace.setDefault(true);
+		
+		MassiveRaces.get().log(Txt.parse("<i>...Done!"));
+		
+		return defRace;
 	}
 	
 	public MRace getByName(String arg0)
