@@ -6,6 +6,7 @@ import com.massivecraft.massivecore.command.MassiveCommandHelp;
 import com.massivecraft.massivecore.command.MassiveCommandVersion;
 
 import net.graystone.java.races.MassiveRaces;
+import net.graystone.java.races.command.edit.CmdEdit;
 import net.graystone.java.races.entity.MConf;
 
 public class CmdRace extends RaceCommand
@@ -23,6 +24,8 @@ public class CmdRace extends RaceCommand
 		
 		this.addChild(new CmdCreate());
 		this.addChild(new CmdRemove());
+		
+		this.addChild(new CmdEdit());
 		
 		this.addChild(new MassiveCommandVersion(MassiveRaces.get()));
 	}
