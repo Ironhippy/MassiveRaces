@@ -17,6 +17,10 @@ public class MConf extends Entity<MConf>
 	private List<String> commandAliases = MUtil.list("races", "race", "r");
 	public List<String> getAliases() { return this.commandAliases; }
 	
+	private float burnLightTemp = 13F;
+	public float burnAt() { return this.burnLightTemp; }
+	
+	
 	@Override
 	public MConf load(MConf that)
 	{
