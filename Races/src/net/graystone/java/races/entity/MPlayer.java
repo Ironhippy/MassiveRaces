@@ -14,7 +14,7 @@ public class MPlayer extends SenderEntity<MPlayer>
 	public boolean setRace(MRace arg0) { if (!canSwitch()) return false; this.raceId = arg0.getId(); this.changed(); return true; }
 	public MRace getRace()
 	{
-		if (!MRaceColl.get().containsRace(raceId) || raceId == null)
+		if (!MRaceColl.get().containsId(raceId) || raceId == null)
 		{
 			raceId = MConf.get().getDefaultRace();
 			this.changed();
@@ -29,6 +29,6 @@ public class MPlayer extends SenderEntity<MPlayer>
 	public long getLastSwitchTime() { return this.lastSwitch; }
 	public void setSwitch(long switchTime) { this.lastSwitch = switchTime; this.changed(); }
 	public boolean canSwitch() { if (this.getNextSwitchTime()-this.getLastSwitchTime()>TimeUnit.MILLIS_PER_HOUR || lastSwitch == 0) return true; return false; }
-	public long getNextSwitchTime() { System.out.println("Last Time: "+lastSwitch); return lastSwitch+MassiveRaces.HOUR; }
+	public long getNextSwitchTime() { return lastSwitch+MassiveRaces.HOUR; }
 	
 }
