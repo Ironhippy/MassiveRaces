@@ -6,10 +6,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.massivecraft.massivecore.Engine;
 
-
+import net.graystone.java.races.MassiveRaces;
 import net.graystone.java.races.RaceTrait;
 import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
@@ -44,7 +45,87 @@ public class TraitEngine extends Engine
 		
 		if (playerRace.containsTrait(RaceTrait.BURN_SUNLIGHT))
 		{
-			
+			new BukkitRunnable()
+			{
+				public void run()
+				{
+					if (!hasSun(player) || !playerRace.containsTrait(RaceTrait.BURN_SUNLIGHT))
+					{
+						this.cancel();
+						return;
+					}
+					
+					player.setFireTicks(19);
+				}
+			}.runTaskTimer(MassiveRaces.get(), 20L, 0L);
+		}
+		
+		if (playerRace.containsTrait(RaceTrait.FEED_SUNLIGHT))
+		{
+			new BukkitRunnable()
+			{
+				public void run()
+				{
+					if (!hasSun(player) || !playerRace.containsTrait(RaceTrait.FEED_SUNLIGHT))
+					{
+						this.cancel();
+						return;
+					}
+					
+					if (player.getFoodLevel()==20) return;
+					
+					player.setFoodLevel(player.getFoodLevel()+1);
+				}
+			}.runTaskTimer(MassiveRaces.get(), 80L, 0L);
+		}
+	}
+	
+	@EventHandler
+	public void moveDarkness(LightChangeEvent event)
+	{
+		MPlayer target = event.getPlayer();
+		MRace targetRace = target.getRace();
+		
+		if (!targetRace.containsTrait(RaceTrait.FEED_DARKNESS) && !targetRace.containsTrait(RaceTrait.FREEZE_DARKNESS)) return;
+		
+		Player player = target.getPlayer();
+		
+		if (hasSun(player)) return;
+		
+		if (targetRace.containsTrait(RaceTrait.FEED_DARKNESS))
+		{
+			new BukkitRunnable()
+			{
+				public void run()
+				{
+					if (hasSun(player) || !targetRace.containsTrait(RaceTrait.FEED_DARKNESS))
+					{
+						this.cancel();
+						return;
+					}
+					
+					if (player.getFoodLevel()==20) return;
+					player.setFoodLevel(player.getFoodLevel()+1);
+				}
+			}.runTaskTimer(MassiveRaces.get(), 80L, 0L);
+		}
+		
+		if (targetRace.containsTrait(RaceTrait.FREEZE_DARKNESS))
+		{
+			new BukkitRunnable()
+			{
+				public void run()
+				{
+					if (hasSun(player) || !targetRace.containsTrait(RaceTrait.FREEZE_DARKNESS))
+					{
+						this.cancel();
+						return;
+					}
+					
+					if (player.getHealth()==1) return;
+					player.damage(1);
+				}
+			}.runTaskTimer(MassiveRaces.get(), 80L, 0L);
 		}
 	}
 	
@@ -59,6 +140,15 @@ public class TraitEngine extends Engine
 		LightChangeEvent calledEvent = new LightChangeEvent(event.getTo(), MPlayer.get(event.getPlayer()));
 		calledEvent.run();
 	}
+	
+	@EventHandler(priority=EventPriority.HIGH)
+	public void lightUpdateEvent(PlayerJoinEvent event)
+	{
+		LightChangeEvent calledEvent = new LightChangeEvent(event.getPlayer().getLocation(), MPlayer.get(event.getPlayer()));
+		calledEvent.run();
+	}
+	
+	
 	
 	private boolean hasSun(Player target)
 	{
