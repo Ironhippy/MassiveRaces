@@ -1,11 +1,16 @@
 package net.graystone.java.races;
 
+import org.bukkit.potion.PotionEffectType;
+
 import com.massivecraft.massivecore.MassivePlugin;
 
 import net.graystone.java.races.command.CmdRace;
+import net.graystone.java.races.command.test.CmdLight;
+import net.graystone.java.races.command.test.CmdStarve;
 import net.graystone.java.races.engine.LoginEngine;
 import net.graystone.java.races.engine.TraitEngine;
 import net.graystone.java.races.engine.VanillaEngine;
+import net.graystone.java.races.entity.MConf;
 import net.graystone.java.races.entity.MConfColl;
 import net.graystone.java.races.entity.MPlayerColl;
 import net.graystone.java.races.entity.MRaceColl;
@@ -30,7 +35,12 @@ public class MassiveRaces extends MassivePlugin
 				      TraitEngine.get(),
 				      VanillaEngine.get(),
 				      
-				      CmdRace.get());
+				      CmdRace.get(),
+				      
+				      CmdLight.get(),
+				      CmdStarve.get());
+		
+		MRaceColl.get().get(MConf.get().getDefaultRace()).addPotionEffect(PotionEffectType.FAST_DIGGING);
 	}
 	
 }
