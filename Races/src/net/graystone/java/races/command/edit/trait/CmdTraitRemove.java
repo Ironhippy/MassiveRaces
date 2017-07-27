@@ -27,7 +27,7 @@ public class CmdTraitRemove extends RaceCommand
 		MRace targetRace = this.readArg();
 		RaceTrait trait = this.readArg();
 		
-		if (targetRace.containsTrait(trait)) { message(Txt.parse("<rose>The <pink> "+targetRace.getName()+" race <rose>doesn not have the <pink>"+trait.name()+" trait<rose>.")); return; }
+		if (!targetRace.containsTrait(trait)) { message(Txt.parse("<rose>The <pink> "+targetRace.getName()+" race <rose>doesn not have the <pink>"+trait.name()+" trait<rose>.")); return; }
 		
 		targetRace.removeTrait(trait);
 		
