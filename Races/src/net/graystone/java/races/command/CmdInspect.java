@@ -5,6 +5,7 @@ import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 
 import net.graystone.java.races.Perm;
+import net.graystone.java.races.command.req.HasRaceSelected;
 import net.graystone.java.races.command.type.TypeMPlayer;
 import net.graystone.java.races.entity.MPlayer;
 
@@ -15,7 +16,7 @@ public class CmdInspect extends RaceCommand
 	{
 		this.addAliases("inspect", "i");
 		this.setDesc("inspect a player's race");
-		this.addRequirements(RequirementHasPerm.get(Perm.INSPECT.toString()));
+		this.addRequirements(RequirementHasPerm.get(Perm.INSPECT.toString()), HasRaceSelected.get());
 		
 		this.addParameter(TypeMPlayer.get(), "playerName");
 	}
