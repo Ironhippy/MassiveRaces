@@ -69,7 +69,8 @@ public class MRace extends Entity<MRace>
 	
 	private List<String> raceTraits = new MassiveList<String>();
 	public void addTrait(RaceTrait arg0) { this.raceTraits.add(arg0.toString()); this.changed(); }
-	public void removeTrait(RaceTrait arg0) { this.raceTraits.add(arg0.toString()); this.changed(); }
+	public void removeTrait(RaceTrait arg0) { this.raceTraits.remove(arg0.toString()); this.changed(); }
+	public List<String> getTraits() { return this.raceTraits; }
 	
 	public boolean containsTrait(RaceTrait arg0) { if (raceTraits.contains(arg0.toString())) return true; return false; }
 	
