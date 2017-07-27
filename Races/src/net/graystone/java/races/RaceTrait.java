@@ -33,7 +33,7 @@ public enum RaceTrait
 	public String toString() { return this.id; }
 	public boolean isPositive() { if (this.positive==0) return true; return false; }
 	
-	public RaceTrait fromString(String arg0)
+	public static RaceTrait fromString(String arg0)
 	{
 		RaceTrait ret = null;
 		for (RaceTrait all : RaceTrait.values())
