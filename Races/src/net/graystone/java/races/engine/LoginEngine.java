@@ -1,6 +1,7 @@
 package net.graystone.java.races.engine;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import com.massivecraft.massivecore.Engine;
@@ -17,12 +18,14 @@ public class LoginEngine extends Engine
 	private static LoginEngine i = new LoginEngine();
 	public static LoginEngine get() { return LoginEngine.i; }
 	
-	@EventHandler
+	@EventHandler(priority=EventPriority.HIGH)
 	public void messageLogin(PlayerJoinEvent event)
 	{
 		MPlayer player = MPlayer.get(event.getPlayer());
 		
 		if (player.getRace()==null) { player.setRace(MRaceColl.get().get(MConf.get().getDefaultRace())); }
+		
+		if (player.getRace().getId().equalsIgnoreCase(MConf.get().getDefaultRace())) return;
 		
 		MRace race = player.getRace();
 		
