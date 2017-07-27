@@ -24,7 +24,7 @@ public class CmdInfo extends RaceCommand
 		MRace targetRace = this.readArg();
 		
 		
-		
+		@SuppressWarnings("unused")
 		String info = Txt.parse("<gold>________.[ <green>"+targetRace.getName()+" Info <gold>].________\n"
 				               +"Lore: <i>"+targetRace.getDesc()+"<orange>\n"
 				               +"Effects: <lime>");
