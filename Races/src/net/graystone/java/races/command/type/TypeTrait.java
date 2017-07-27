@@ -23,7 +23,7 @@ public class TypeTrait extends TypeAbstract<RaceTrait>
 	@Override
 	public RaceTrait read(String arg, CommandSender sender) throws MassiveException
 	{
-		return null;
+		return RaceTrait.fromString(arg);
 	}
 
 	@Override
