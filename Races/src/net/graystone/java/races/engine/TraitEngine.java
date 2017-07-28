@@ -15,6 +15,8 @@ import net.graystone.java.races.RaceTrait;
 import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
 import net.graystone.java.races.event.LightChangeEvent;
+import net.graystone.java.races.event.WaterMoveEvent;
+import net.minecraft.server.v1_12_R1.Material;
 
 public class TraitEngine extends Engine
 {
@@ -129,6 +131,12 @@ public class TraitEngine extends Engine
 		}
 	}
 	
+	@EventHandler
+	public void ontoWaterEvent(WaterMoveEvent event)
+	{
+		// TODO Write breathable abilities as well as flyWater
+	}
+	
 	@EventHandler(priority=EventPriority.HIGH)
 	public void lightUpdateEvent(PlayerMoveEvent event)
 	{
@@ -148,7 +156,20 @@ public class TraitEngine extends Engine
 		calledEvent.run();
 	}
 	
-	
+	@EventHandler(priority=EventPriority.HIGH)
+	public void waterMoveEvent(PlayerMoveEvent event)
+	{
+		if (!event.getTo().getBlock().getType().equals(Material.WATER))
+		{
+			WaterMoveEvent calledEvent = new WaterMoveEvent(false, MPlayer.get(event.getPlayer()));
+			calledEvent.run();
+			
+			return;
+		}
+		
+		WaterMoveEvent calledEvent = new WaterMoveEvent(true, MPlayer.get(event.getPlayer()));
+		calledEvent.run();
+	}
 	
 	private boolean hasSun(Player target)
 	{
