@@ -140,6 +140,8 @@ public class TraitEngine extends Engine
 	@EventHandler(priority=EventPriority.HIGH)
 	public void lightUpdateEvent(PlayerMoveEvent event)
 	{
+		if (!VanillaEngine.get().isValid(event.getFrom(), event.getTo())) return;
+		
 		float lightFrom = event.getFrom().getBlock().getLightLevel();
 		float lightTo = event.getTo().getBlock().getLightLevel();
 		
@@ -159,6 +161,8 @@ public class TraitEngine extends Engine
 	@EventHandler(priority=EventPriority.HIGH)
 	public void waterMoveEvent(PlayerMoveEvent event)
 	{
+		if (!VanillaEngine.get().isValid(event.getFrom(), event.getTo())) return;
+		
 		if (!event.getTo().getBlock().getType().equals(Material.WATER))
 		{
 			WaterMoveEvent calledEvent = new WaterMoveEvent(false, MPlayer.get(event.getPlayer()));

@@ -18,6 +18,8 @@ public class VanillaEngine extends Engine
 	@EventHandler
 	public void walkEvent(PlayerMoveEvent event)
 	{
+		if (!isValid(event.getFrom(), event.getTo())) return;
+		
 		MRace playerRace = MPlayer.get(event.getPlayer()).getRace();
 		
 		if (!playerRace.hasParticleEffect()) return;
@@ -25,5 +27,15 @@ public class VanillaEngine extends Engine
 		Location targetLocation = event.getTo();
 		
 		targetLocation.getWorld().spawnParticle(playerRace.getParticleEffect(), targetLocation.getX(), targetLocation.getY(), targetLocation.getZ(), 12);
+	}
+	
+	public boolean isValid(Location firstLocation, Location secondLocation)
+	{
+		if (firstLocation.getX()==secondLocation.getX() && firstLocation.getZ()==secondLocation.getZ() && firstLocation.getY()==secondLocation.getY())
+		{
+			return false;
+		}
+		
+		return true;
 	}
 }
