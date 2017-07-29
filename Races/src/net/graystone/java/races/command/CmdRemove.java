@@ -19,7 +19,7 @@ public class CmdRemove extends RaceCommand
 	{
 		this.addAliases("remove");
 		this.setDesc("remove a race from the playable list");
-		this.addRequirements(RequirementHasPerm.get(Perm.REMOVE.toString()));
+		this.addRequirements(RequirementHasPerm.get(Perm.RACE_REMOVE.toString()));
 		
 		this.addParameter(TypeRace.get(), "raceName");
 	}

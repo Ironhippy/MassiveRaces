@@ -25,7 +25,7 @@ public class CmdBe extends RaceCommand
 		this.addParameter(TypeRace.get(), "raceType");
 		this.addParameter(player, TypeMPlayer.get(), "playerName");
 		
-		this.addRequirements(RequirementHasPerm.get(Perm.BE.toString()));
+		this.addRequirements(RequirementHasPerm.get(Perm.RACE_BECOME.toString()));
 	}
 	
 	@Override

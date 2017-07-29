@@ -4,14 +4,27 @@ import net.graystone.java.races.entity.MRace;
 
 public enum Perm
 {
-	ADD_TRAIT("traits.add"),
-	REMOVE_TRAIT("traits.remove"),
-	EDIT_NAME("admin.name"),
-	CREATE("admin.create"),
-	REMOVE("admin.remove"),
-	BE("default.become"),
-	INSPECT("default.inspect"),
-	INFO("default.info");
+	RACE_BECOME("default.become"),
+	RACE_INFO("default.info"),
+	RACE_INSPECT("default.inspect"),
+	
+	RACE_CREATE("admin.create"),
+	RACE_REMOVE("admin.remove"),
+	
+	EDIT_DEFAULT("edit.default"),
+	EDIT_NAME("edit.name"),
+	EDIT_SOUND("edit.sound"),
+	
+	PARTICLE_SET("particle.set"),
+	PARTICLE_RESET("particle.reset"),
+	
+	TRAIT_ADD("traits.add"),
+	TRAIT_REMOVE("traits.remove"),
+	TRAIT_LIST("traits.list"),
+	
+	TEST_LIGHT("test.light"),
+	TEST_STARVE("test.starve");
+	
 	
 	private String node = "massiveraces.";
 	

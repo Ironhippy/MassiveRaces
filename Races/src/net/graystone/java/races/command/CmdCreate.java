@@ -16,7 +16,7 @@ public class CmdCreate extends RaceCommand
 	{
 		this.addAliases("create");
 		this.setDesc("create a playable race");
-		this.addRequirements(RequirementHasPerm.get(Perm.CREATE.toString()));
+		this.addRequirements(RequirementHasPerm.get(Perm.RACE_CREATE.toString()));
 		this.addParameter(TypeString.get(), "raceName");
 		this.addParameter(false, TypeBooleanTrue.get(), "permissionRequired");
 	}

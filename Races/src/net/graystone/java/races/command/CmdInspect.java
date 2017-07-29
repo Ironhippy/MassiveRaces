@@ -16,7 +16,7 @@ public class CmdInspect extends RaceCommand
 	{
 		this.addAliases("inspect", "i");
 		this.setDesc("inspect a player's race");
-		this.addRequirements(RequirementHasPerm.get(Perm.INSPECT.toString()), HasRaceSelected.get());
+		this.addRequirements(RequirementHasPerm.get(Perm.RACE_INSPECT.toString()), HasRaceSelected.get());
 		
 		this.addParameter(TypeMPlayer.get(), "playerName");
 	}
