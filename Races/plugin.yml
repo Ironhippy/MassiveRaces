@@ -1,5 +1,6 @@
 name: MassiveRaces
 version: 2.13.0-SNAPSHOT
 main: net.graystone.java.races.MassiveRaces
+description: <aqua>MassiveRaces <i>was developed by <pink>Flashera <i>and <pink>Ironhippy <i>as the <silver>GrayStone Roleplay Server<i>'s official race plugin. The races with this plugin are heavily configurable and entirely determined by administrators. 
 authors: [Ironhippy, Flashera]
 depend: [MassiveCore]
