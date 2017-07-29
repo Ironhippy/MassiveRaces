@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.massivecraft.massivecore.collections.MassiveList;
 
+import net.graystone.java.races.entity.MConf;
+
 public enum RaceTrait
 {
 	
@@ -52,6 +54,7 @@ public enum RaceTrait
 		List<String> ret = new MassiveList<String>();
 		for (RaceTrait all : RaceTrait.values())
 		{
+			if (all.id.equalsIgnoreCase(MConf.get().getDefaultRace())) continue;
 			ret.add(all.id);
 		}
 		
