@@ -7,9 +7,10 @@ import org.bukkit.command.CommandSender;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.type.TypeAbstract;
 
-import net.graystone.java.races.RaceTrait;
+import net.graystone.java.races.MassiveRaces;
+import net.graystone.java.races.traits.TraitAbstract;
 
-public class TypeTrait extends TypeAbstract<RaceTrait>
+public class TypeTrait extends TypeAbstract<TraitAbstract>
 {
 	
 	private static TypeTrait i = new TypeTrait();
@@ -17,18 +18,18 @@ public class TypeTrait extends TypeAbstract<RaceTrait>
 	
 	public TypeTrait()
 	{
-		super(RaceTrait.class);
+		super(TraitAbstract.class);
 	}
 
 	@Override
-	public RaceTrait read(String arg, CommandSender sender) throws MassiveException
+	public TraitAbstract read(String arg, CommandSender sender) throws MassiveException
 	{
-		return RaceTrait.fromString(arg);
+		return MassiveRaces.get().getTrait(arg);
 	}
 
 	@Override
 	public Collection<String> getTabList(CommandSender sender, String arg)
 	{
-		return RaceTrait.getArguments();
+		return MassiveRaces.get().getTraits();
 	}
 }
