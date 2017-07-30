@@ -5,6 +5,7 @@ import org.bukkit.potion.PotionEffectType;
 import com.massivecraft.massivecore.MassivePlugin;
 
 import net.graystone.java.races.command.CmdRace;
+import net.graystone.java.races.command.CmdScream;
 import net.graystone.java.races.command.test.CmdLight;
 import net.graystone.java.races.command.test.CmdStarve;
 import net.graystone.java.races.engine.LoginEngine;
@@ -34,6 +35,8 @@ public class MassiveRaces extends MassivePlugin
 				      LoginEngine.get(),
 				      TraitEngine.get(),
 				      VanillaEngine.get(),
+				      
+				      CmdScream.get(),
 				      
 				      CmdRace.get(),
 				      

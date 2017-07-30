@@ -20,6 +20,7 @@ public class CmdRace extends RaceCommand
 		this.addChild(new MassiveCommandHelp());
 		
 		this.addChild(new CmdBe());
+		this.addChild(CmdScream.get());
 		this.addChild(new CmdInspect());
 		
 		this.addChild(new CmdCreate());
