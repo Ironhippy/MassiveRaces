@@ -132,9 +132,21 @@ public class TraitEngine extends Engine
 	}
 	
 	@EventHandler
-	public void ontoWaterEvent(WaterMoveEvent event)
+	public void flyWaterEvent(WaterMoveEvent event)
 	{
-		// TODO Write breathable abilities as well as flyWater
+		if (! event.getPlayer().getRace().containsTrait(RaceTrait.FLY_WATER)) return;
+		
+		MPlayer player = event.getPlayer();
+		
+		if (player.getPlayer().isFlying() && !player.getRace().containsTrait(RaceTrait.FLY_WATER))
+		{
+			player.getPlayer().setFlying(false);
+			return;
+		}
+		
+		if (player.getPlayer().isFlying() && !event.fromLand()) return;
+		
+		player.getPlayer().setFlying(true);
 	}
 	
 	@EventHandler(priority=EventPriority.HIGH)
