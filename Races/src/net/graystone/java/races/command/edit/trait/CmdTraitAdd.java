@@ -32,6 +32,6 @@ public class CmdTraitAdd extends RaceCommand
 		
 		targetRace.addTrait(trait);
 		
-		message(Txt.parse("<i>Successfully added the <pink>"+trait.toString()+" trait <i>to the <pink>"+targetRace.getName()+" race<i>."));
+		message(Txt.parse("<i>Successfully added the <pink>"+trait.getId()+" trait <i>to the <pink>"+targetRace.getName()+" race<i>."));
 	}
 }
