@@ -14,6 +14,8 @@ public class CmdParticle extends RaceCommand
 		this.addAliases("edit race particle effect");
 		this.setDesc("edit a race's particle settings");
 		
+		this.addChild(new CmdParticleToggle());
+		
 		this.addChild(new CmdParticleSet());
 		this.addChild(new CmdParticleReset());
 	}
