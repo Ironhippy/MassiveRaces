@@ -18,6 +18,7 @@ public enum Perm
 	
 	PARTICLE_SET("particle.set"),
 	PARTICLE_RESET("particle.reset"),
+	PARTICLE_TOGGLE("particle.toggle"),
 	
 	TRAIT_ADD("traits.add"),
 	TRAIT_REMOVE("traits.remove"),
