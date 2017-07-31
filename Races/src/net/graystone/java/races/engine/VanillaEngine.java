@@ -1,5 +1,6 @@
 package net.graystone.java.races.engine;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -8,7 +9,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.massivecraft.massivecore.Engine;
 
-import net.graystone.java.races.MassiveRaces;
 import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
 import net.graystone.java.races.event.DryMoveEvent;
@@ -59,6 +59,8 @@ public class VanillaEngine extends Engine
 		
 		if (!to.getBlock().getType().equals(Material.WATER) && !to.getBlock().getType().equals(Material.STATIONARY_WATER))
 		{
+			if (event.getPlayer().isFlying() && event.getPlayer().getGameMode()!=GameMode.CREATIVE) event.getPlayer().setFlying(false);
+			
 			boolean fromWater = false;
 			if (to.getBlock().equals(Material.STATIONARY_WATER) || to.getBlock().equals(Material.WATER)
 			 || to.getBlock().equals(Material.STATIONARY_LAVA) || to.getBlock().equals(Material.LAVA)) fromWater = true;
@@ -75,8 +77,6 @@ public class VanillaEngine extends Engine
 		
 		WaterMoveEvent calledEvent = new WaterMoveEvent(fromLand, MPlayer.get(event.getPlayer()));
 		calledEvent.run();
-		
-		MassiveRaces.get().log("Running event!");
 	}
 	
 	public boolean isValid(Location firstLocation, Location secondLocation)
@@ -88,4 +88,13 @@ public class VanillaEngine extends Engine
 		
 		return true;
 	}
+	
+	protected boolean isSubmerged(Location to)
+	{
+		if (to.getBlock().getType().equals(Material.STATIONARY_WATER) ||
+			to.getBlock().getType().equals(Material.WATER)) return true;
+		
+		return false;
+	}
+	
 }
