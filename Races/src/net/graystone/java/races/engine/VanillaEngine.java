@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.massivecraft.massivecore.Engine;
 
+import net.graystone.java.races.MassiveRaces;
 import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
 import net.graystone.java.races.event.LightChangeEvent;
@@ -36,6 +37,8 @@ public class VanillaEngine extends Engine
 	@EventHandler(priority=EventPriority.HIGH)
 	public void lightChange(PlayerMoveEvent event)
 	{
+		if (!isValid(event.getFrom(), event.getTo())) return;
+		
 		Location from = event.getFrom();
 		Location to = event.getTo();
 		
@@ -48,10 +51,12 @@ public class VanillaEngine extends Engine
 	@EventHandler(priority=EventPriority.HIGH)
 	public void swimEvent(PlayerMoveEvent event)
 	{
+		if (!isValid(event.getFrom(), event.getTo())) return;
+		
 		Location from = event.getFrom();
 		Location to = event.getTo();
 		
-		if (!to.getBlock().getType().equals(Material.WATER)) return;
+		if (!to.getBlock().getType().equals(Material.WATER) && !to.getBlock().getType().equals(Material.STATIONARY_WATER)) return;
 		
 		boolean fromLand = false;
 		
@@ -59,6 +64,8 @@ public class VanillaEngine extends Engine
 		
 		WaterMoveEvent calledEvent = new WaterMoveEvent(fromLand, MPlayer.get(event.getPlayer()));
 		calledEvent.run();
+		
+		MassiveRaces.get().log("Running event!");
 	}
 	
 	public boolean isValid(Location firstLocation, Location secondLocation)
