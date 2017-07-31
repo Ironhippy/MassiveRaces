@@ -5,6 +5,6 @@ import net.graystone.java.races.entity.MPlayer;
 public interface Trait
 {
 	
-	public boolean meetsRequirements(MPlayer player);
+	public boolean meetsRequirementsInner(MPlayer player);
 	
 }

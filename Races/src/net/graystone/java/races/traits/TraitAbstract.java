@@ -1,7 +1,10 @@
 package net.graystone.java.races.traits;
 
+import org.bukkit.GameMode;
+
 import com.massivecraft.massivecore.Engine;
 
+import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
 
 public abstract class TraitAbstract extends Engine implements Trait
@@ -20,6 +23,13 @@ public abstract class TraitAbstract extends Engine implements Trait
 		if (!race.containsTrait(this)) return false;
 		
 		return true;
+	}
+	
+	public boolean meetsRequirements(MPlayer player)
+	{
+		if (player.getPlayer().getGameMode().equals(GameMode.CREATIVE)) return false;
+		
+		return this.meetsRequirementsInner(player);
 	}
 	
 }
