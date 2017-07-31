@@ -8,6 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.massivecraft.massivecore.MassivePlugin;
 import com.massivecraft.massivecore.collections.MassiveMap;
+import com.massivecraft.massivecore.util.Txt;
 
 import net.graystone.java.races.command.CmdRace;
 import net.graystone.java.races.command.test.CmdLight;
@@ -19,6 +20,7 @@ import net.graystone.java.races.entity.MConfColl;
 import net.graystone.java.races.entity.MPlayerColl;
 import net.graystone.java.races.entity.MRaceColl;
 import net.graystone.java.races.traits.TraitAbstract;
+import net.graystone.java.races.traits.defaults.TraitFlyWater;
 
 public class MassiveRaces extends MassivePlugin
 {
@@ -46,12 +48,17 @@ public class MassiveRaces extends MassivePlugin
 				      CmdLight.get(),
 				      CmdStarve.get());
 		
+		this.attach(TraitFlyWater.get());
+		
 		MRaceColl.get().get(MConf.get().getDefaultRace()).addPotionEffect(PotionEffectType.FAST_DIGGING);
 	}
 	
-	public void attach(TraitAbstract arg0)
+	public void attach(TraitAbstract... args)
 	{
-		this.attach(arg0.getId(), arg0);
+		for (TraitAbstract arg : args)
+		{
+			this.attach(arg.getId(), arg);
+		}
 	}
 	
 	public void attach(String arg0, TraitAbstract arg1)
@@ -61,7 +68,7 @@ public class MassiveRaces extends MassivePlugin
 		
 		this.activate(arg1);
 		
-		this.log(Level.INFO, "Successfully integrated trait type <pink>"+arg0+"<i>!");
+		this.log(Level.INFO, Txt.parse("Successfully integrated trait type <pink>"+arg0+"<i>!"));
 	}
 	
 	public TraitAbstract getTrait(String arg0) { return this.traitMap.get(arg0); }
