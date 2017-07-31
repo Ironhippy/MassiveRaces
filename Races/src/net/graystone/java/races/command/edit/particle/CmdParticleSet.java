@@ -15,7 +15,7 @@ public class CmdParticleSet extends RaceCommand
 	
 	public CmdParticleSet()
 	{
-		this.addAliases("add", "append");
+		this.addAliases("set");
 		this.setDesc("set a race's visisble particle effect");
 		
 		this.addParameter(TypeRace.get(), "raceName");
