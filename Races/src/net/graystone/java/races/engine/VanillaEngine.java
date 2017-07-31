@@ -16,7 +16,7 @@ public class VanillaEngine extends Engine
 	public static VanillaEngine get() { return VanillaEngine.i; }
 	
 	@EventHandler
-	public void walkEvent(PlayerMoveEvent event)
+	public void particleEvent(PlayerMoveEvent event)
 	{
 		if (!isValid(event.getFrom(), event.getTo())) return;
 		
