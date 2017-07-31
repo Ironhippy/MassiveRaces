@@ -7,6 +7,7 @@ public enum Perm
 	RACE_BECOME("default.become"),
 	RACE_INFO("default.info"),
 	RACE_INSPECT("default.inspect"),
+	RACE_SCREAM("default.scream"),
 	
 	RACE_CREATE("admin.create"),
 	RACE_REMOVE("admin.remove"),
