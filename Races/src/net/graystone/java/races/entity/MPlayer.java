@@ -1,5 +1,6 @@
 package net.graystone.java.races.entity;
 
+import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.store.SenderEntity;
 import com.massivecraft.massivecore.util.TimeUnit;
 
@@ -30,5 +31,7 @@ public class MPlayer extends SenderEntity<MPlayer>
 	public void setSwitch(long switchTime) { this.lastSwitch = switchTime; this.changed(); }
 	public boolean canSwitch() { if (this.getNextSwitchTime()-this.getLastSwitchTime()>TimeUnit.MILLIS_PER_HOUR || lastSwitch == 0) return true; return false; }
 	public long getNextSwitchTime() { return lastSwitch+MassiveRaces.HOUR; }
+	
+	public PS getLocation() { return PS.valueOf(getPlayer()); }
 	
 }
