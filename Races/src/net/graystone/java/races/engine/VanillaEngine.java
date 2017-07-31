@@ -25,8 +25,11 @@ public class VanillaEngine extends Engine
 	public void particleEvent(PlayerMoveEvent event)
 	{
 		if (!isValid(event.getFrom(), event.getTo())) return;
+		MPlayer player = MPlayer.get(event.getPlayer());
 		
-		MRace playerRace = MPlayer.get(event.getPlayer()).getRace();
+		if (!player.areParticlesToggled()) return;
+		
+		MRace playerRace = player.getRace();
 		
 		if (!playerRace.hasParticleEffect()) return;
 		
