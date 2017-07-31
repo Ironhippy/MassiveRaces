@@ -1,13 +1,17 @@
 package net.graystone.java.races.engine;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.massivecraft.massivecore.Engine;
 
 import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
+import net.graystone.java.races.event.LightChangeEvent;
+import net.graystone.java.races.event.WaterMoveEvent;
 
 public class VanillaEngine extends Engine
 {
@@ -27,6 +31,34 @@ public class VanillaEngine extends Engine
 		Location targetLocation = event.getTo();
 		
 		targetLocation.getWorld().spawnParticle(playerRace.getParticleEffect(), targetLocation.getX(), targetLocation.getY(), targetLocation.getZ(), 12);
+	}
+	
+	@EventHandler(priority=EventPriority.HIGH)
+	public void lightChange(PlayerMoveEvent event)
+	{
+		Location from = event.getFrom();
+		Location to = event.getTo();
+		
+		if (from.getBlock().getLightFromSky()==to.getBlock().getLightFromSky()) return;
+		
+		LightChangeEvent eventCalled = new LightChangeEvent(to, MPlayer.get(event.getPlayer()));
+		eventCalled.run();
+	}
+	
+	@EventHandler(priority=EventPriority.HIGH)
+	public void swimEvent(PlayerMoveEvent event)
+	{
+		Location from = event.getFrom();
+		Location to = event.getTo();
+		
+		if (!to.getBlock().getType().equals(Material.WATER)) return;
+		
+		boolean fromLand = false;
+		
+		if (!from.getBlock().getType().equals(Material.WATER)) fromLand = true;
+		
+		WaterMoveEvent calledEvent = new WaterMoveEvent(fromLand, MPlayer.get(event.getPlayer()));
+		calledEvent.run();
 	}
 	
 	public boolean isValid(Location firstLocation, Location secondLocation)
