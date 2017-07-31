@@ -35,4 +35,8 @@ public class MPlayer extends SenderEntity<MPlayer>
 	
 	public Location getLocation() { return getPlayer().getLocation(); }
 	
+	private boolean activeParticles = true;
+	public void toggleParticles(boolean toggle) { this.activeParticles = toggle; this.changed(); }
+	public boolean areParticlesToggled() { return this.activeParticles; }
+	
 }
