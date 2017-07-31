@@ -30,7 +30,8 @@ public class TraitFlyWater extends TraitAbstract
 			return false;
 		}
 		
-		if (player.getPlayer().isFlying()) return false;
+		if (player.getPlayer().isFlying()
+		 && !isSubmerged(player.getPlayer().getLocation())) return false;
 		
 		return true;
 	}
@@ -40,13 +41,6 @@ public class TraitFlyWater extends TraitAbstract
 	{
 		if (!meetsRequirements(event.getPlayer())) return;
 		MPlayer player = event.getPlayer();
-		
-		if (!event.fromLand())
-		{
-			player.getPlayer().setFlying(false);
-			
-			return;
-		}
 		
 		player.getPlayer().setFlying(true);
 	}

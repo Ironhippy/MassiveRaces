@@ -23,7 +23,7 @@ public class LoginEngine extends Engine
 	{
 		MPlayer player = MPlayer.get(event.getPlayer());
 		
-		player.getPlayer().setAllowFlight(true);
+		event.getPlayer().setAllowFlight(true);
 		
 		if (player.getRace()==null) { player.setRace(MRaceColl.get().get(MConf.get().getDefaultRace())); }
 		
