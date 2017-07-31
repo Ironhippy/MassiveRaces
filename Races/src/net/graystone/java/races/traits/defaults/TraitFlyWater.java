@@ -1,8 +1,9 @@
 package net.graystone.java.races.traits.defaults;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 
-import net.graystone.java.races.MassiveRaces;
 import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.event.WaterMoveEvent;
 import net.graystone.java.races.traits.TraitAbstract;
@@ -19,14 +20,17 @@ public class TraitFlyWater extends TraitAbstract
 	}
 	
 	@Override
-	public boolean meetsRequirements(MPlayer player)
+	public boolean meetsRequirementsInner(MPlayer player)
 	{
-		if (!containsTrait(player.getRace()))
+		if (!containsTrait(player.getRace())
+		 || !isSubmerged(player.getLocation()))
 		{
 			if (player.getPlayer().isFlying()) player.getPlayer().setFlying(false);
 			
 			return false;
 		}
+		
+		if (player.getPlayer().isFlying()) return false;
 		
 		return true;
 	}
@@ -34,9 +38,7 @@ public class TraitFlyWater extends TraitAbstract
 	@EventHandler
 	public void swimEvent(WaterMoveEvent event)
 	{
-		MassiveRaces.get().log("1");
 		if (!meetsRequirements(event.getPlayer())) return;
-		MassiveRaces.get().log("2");
 		MPlayer player = event.getPlayer();
 		
 		if (!event.fromLand())
@@ -47,5 +49,13 @@ public class TraitFlyWater extends TraitAbstract
 		}
 		
 		player.getPlayer().setFlying(true);
+	}
+	
+	protected boolean isSubmerged(Location to)
+	{
+		if (to.getBlock().getType().equals(Material.STATIONARY_WATER) ||
+			to.getBlock().getType().equals(Material.WATER)) return true;
+		
+		return false;
 	}
 }
