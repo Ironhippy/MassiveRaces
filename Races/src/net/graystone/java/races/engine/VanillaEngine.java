@@ -11,6 +11,7 @@ import com.massivecraft.massivecore.Engine;
 import net.graystone.java.races.MassiveRaces;
 import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
+import net.graystone.java.races.event.DryMoveEvent;
 import net.graystone.java.races.event.LightChangeEvent;
 import net.graystone.java.races.event.WaterMoveEvent;
 
@@ -56,11 +57,21 @@ public class VanillaEngine extends Engine
 		Location from = event.getFrom();
 		Location to = event.getTo();
 		
-		if (!to.getBlock().getType().equals(Material.WATER) && !to.getBlock().getType().equals(Material.STATIONARY_WATER)) return;
+		if (!to.getBlock().getType().equals(Material.WATER) && !to.getBlock().getType().equals(Material.STATIONARY_WATER))
+		{
+			boolean fromWater = false;
+			if (to.getBlock().equals(Material.STATIONARY_WATER) || to.getBlock().equals(Material.WATER)
+			 || to.getBlock().equals(Material.STATIONARY_LAVA) || to.getBlock().equals(Material.LAVA)) fromWater = true;
+			
+			DryMoveEvent calledEvent = new DryMoveEvent(fromWater, MPlayer.get(event.getPlayer()));
+			calledEvent.run();
+			
+			return;
+		}
 		
 		boolean fromLand = false;
 		
-		if (!from.getBlock().getType().equals(Material.WATER)) fromLand = true;
+		if (!from.getBlock().getType().equals(Material.WATER) && !from.getBlock().getType().equals(Material.STATIONARY_WATER)) fromLand = true;
 		
 		WaterMoveEvent calledEvent = new WaterMoveEvent(fromLand, MPlayer.get(event.getPlayer()));
 		calledEvent.run();
