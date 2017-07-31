@@ -31,6 +31,6 @@ public class CmdTraitList extends RaceCommand
 		
 		String sepVar = StringUtils.join(traits, "<i>, <aqua>");
 		
-		message(Txt.parse("<i>The <pink>"+targetRace.getName()+" race has the following traits: <aqua>"+sepVar+"<i>."));
+		message(Txt.parse("<i>The <pink>"+targetRace.getName()+" race <i>has the following traits: <aqua>"+sepVar+"<i>."));
 	}
 }
