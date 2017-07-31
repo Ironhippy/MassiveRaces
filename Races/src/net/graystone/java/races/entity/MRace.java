@@ -72,7 +72,7 @@ public class MRace extends Entity<MRace>
 	public void removeTrait(TraitAbstract arg0) { this.raceTraits.remove(arg0.getId()); this.changed(); }
 	public List<String> getTraits() { return this.raceTraits; }
 	
-	public boolean containsTrait(TraitAbstract arg0) { if (raceTraits.contains(arg0.toString())) return true; return false; }
+	public boolean containsTrait(TraitAbstract arg0) { if (raceTraits.contains(arg0.getId())) return true; return false; }
 	
 	private String raceDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac molestie magna, semper elementum est. Mauris quis hendrerit odio. Curabitur sollicitudin, velit sit amet bibendum iaculis, sem quam ullamcorper mauris, ac rhoncus mauris augue non tortor. Quisque in enim vulputate nibh scelerisque mollis. Phasellus quis elementum quam. Sed a malesuada velit. Curabitur vel rutrum lectus. Duis porttitor elit et purus volutpat, sit amet aliquam neque volutpat. Suspendisse ligula mauris, finibus sit amet metus sagittis, ornare blandit purus. Aliquam a felis ac lacus porttitor dapibus sed id ligula. In at molestie ipsum. Aenean mollis eros dui, feugiat convallis felis egestas at.";
 	public MRace setDesc(String arg0) { this.raceDescription = arg0; this.changed(); return this; }
