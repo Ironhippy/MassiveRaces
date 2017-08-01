@@ -27,7 +27,8 @@ public abstract class TraitAbstract extends Engine implements Trait
 	
 	public boolean meetsRequirements(MPlayer player)
 	{
-		if (player.getPlayer().getGameMode().equals(GameMode.CREATIVE)) return false;
+		if (player.getPlayer().getGameMode().equals(GameMode.CREATIVE)
+		 || !containsTrait(player.getRace())) return false;
 		
 		return this.meetsRequirementsInner(player);
 	}

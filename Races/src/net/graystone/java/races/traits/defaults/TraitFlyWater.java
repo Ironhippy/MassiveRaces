@@ -22,8 +22,7 @@ public class TraitFlyWater extends TraitAbstract
 	@Override
 	public boolean meetsRequirementsInner(MPlayer player)
 	{
-		if (!containsTrait(player.getRace())
-		 || !isSubmerged(player.getLocation()))
+		if (!isSubmerged(player.getLocation()))
 		{
 			if (player.getPlayer().isFlying()) player.getPlayer().setFlying(false);
 			
