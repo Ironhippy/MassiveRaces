@@ -31,6 +31,8 @@ public class TraitPhotosynthesis extends TraitAbstract
 	@Override
 	public boolean meetsRequirementsInner(MPlayer player)
 	{
+		if (player.getLocation().getWorld().hasStorm()) return false;
+		
 		if (isDay(player.getLocation().getWorld())
 			&& player.getLocation().getBlock().getLightFromSky()>MConf.get().burnAt()
 			&& player.getPlayer().getFoodLevel()<18
