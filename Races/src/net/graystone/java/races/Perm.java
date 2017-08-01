@@ -20,6 +20,10 @@ public enum Perm
 	PARTICLE_RESET("particle.reset"),
 	PARTICLE_TOGGLE("particle.toggle"),
 	
+	PEFFECT_ADD("potioneffect.add"),
+	PEFFECT_REMOVE("potioneffect.remove"),
+	PEFFECT_LIST("potioneffect.list"),
+	
 	TRAIT_ADD("traits.add"),
 	TRAIT_REMOVE("traits.remove"),
 	TRAIT_LIST("traits.list"),
