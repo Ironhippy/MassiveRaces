@@ -20,6 +20,8 @@ import net.graystone.java.races.entity.MConfColl;
 import net.graystone.java.races.entity.MPlayerColl;
 import net.graystone.java.races.entity.MRaceColl;
 import net.graystone.java.races.traits.TraitAbstract;
+import net.graystone.java.races.traits.defaults.TraitBurnRain;
+import net.graystone.java.races.traits.defaults.TraitFeedDarkness;
 import net.graystone.java.races.traits.defaults.TraitFlyWater;
 import net.graystone.java.races.traits.defaults.TraitPhotosynthesis;
 
@@ -50,7 +52,9 @@ public class MassiveRaces extends MassivePlugin
 				      CmdStarve.get());
 		
 		this.attach(TraitFlyWater.get(),
-				    TraitPhotosynthesis.get());
+				    TraitPhotosynthesis.get(),
+				    TraitFeedDarkness.get(),
+				    TraitBurnRain.get());
 		
 		MRaceColl.get().get(MConf.get().getDefaultRace()).addPotionEffect(PotionEffectType.FAST_DIGGING);
 	}
