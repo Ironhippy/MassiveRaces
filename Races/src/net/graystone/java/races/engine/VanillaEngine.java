@@ -65,8 +65,8 @@ public class VanillaEngine extends Engine
 			if (event.getPlayer().isFlying() && event.getPlayer().getGameMode()!=GameMode.CREATIVE) event.getPlayer().setFlying(false);
 			
 			boolean fromWater = false;
-			if (to.getBlock().equals(Material.STATIONARY_WATER) || to.getBlock().equals(Material.WATER)
-			 || to.getBlock().equals(Material.STATIONARY_LAVA) || to.getBlock().equals(Material.LAVA)) fromWater = true;
+			if (to.getBlock().getType().equals(Material.STATIONARY_WATER) || to.getBlock().getType().equals(Material.WATER)
+			 || to.getBlock().getType().equals(Material.STATIONARY_LAVA) || to.getBlock().getType().equals(Material.LAVA)) fromWater = true;
 			
 			DryMoveEvent calledEvent = new DryMoveEvent(fromWater, MPlayer.get(event.getPlayer()));
 			calledEvent.run();
