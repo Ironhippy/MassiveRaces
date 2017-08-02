@@ -16,7 +16,7 @@ public class CmdPotion extends RaceCommand
 		this.addChild(new CmdPotionAdd());
 		this.addChild(new CmdPotionRemove());
 		
-		
+		this.addChild(new CmdPotionList());
 	}
 	
 	@Override
