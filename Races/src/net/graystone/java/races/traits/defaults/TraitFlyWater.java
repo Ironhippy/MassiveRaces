@@ -41,6 +41,8 @@ public class TraitFlyWater extends TraitAbstract
 		if (!meetsRequirements(event.getPlayer())) return;
 		MPlayer player = event.getPlayer();
 		
+		if (!player.getPlayer().getAllowFlight()) player.getPlayer().setAllowFlight(true);
+		
 		player.getPlayer().setFlying(true);
 	}
 	
