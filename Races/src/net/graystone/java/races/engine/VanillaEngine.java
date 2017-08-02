@@ -6,6 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.massivecraft.massivecore.Engine;
 
@@ -36,6 +38,25 @@ public class VanillaEngine extends Engine
 		Location targetLocation = event.getTo();
 		
 		targetLocation.getWorld().spawnParticle(playerRace.getParticleEffect(), targetLocation.getX(), targetLocation.getY(), targetLocation.getZ(), 12);
+	}
+	
+	@EventHandler
+	public void potionEvent(PlayerMoveEvent event)
+	{
+		if (!isValid(event.getFrom(), event.getTo())) return;
+		
+		MPlayer player = MPlayer.get(event.getPlayer());
+		
+		if (player.getPlayer().getGameMode()==GameMode.CREATIVE) return;
+		
+		MRace playerRace = player.getRace();
+		
+		for (PotionEffectType types : playerRace.getPotionEffects())
+		{
+			PotionEffect playedEffect = new PotionEffect(types, 200, 0);
+			
+			player.getPlayer().addPotionEffect(playedEffect, true);
+		}
 	}
 	
 	@EventHandler(priority=EventPriority.HIGH)
