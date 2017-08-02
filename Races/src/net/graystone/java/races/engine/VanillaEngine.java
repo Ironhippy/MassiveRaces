@@ -1,16 +1,20 @@
 package net.graystone.java.races.engine;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.massivecraft.massivecore.Engine;
 
+import net.graystone.java.races.MassiveRaces;
 import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
 import net.graystone.java.races.event.DryMoveEvent;
@@ -38,25 +42,6 @@ public class VanillaEngine extends Engine
 		Location targetLocation = event.getTo();
 		
 		targetLocation.getWorld().spawnParticle(playerRace.getParticleEffect(), targetLocation.getX(), targetLocation.getY(), targetLocation.getZ(), 12);
-	}
-	
-	@EventHandler
-	public void potionEvent(PlayerMoveEvent event)
-	{
-		if (!isValid(event.getFrom(), event.getTo())) return;
-		
-		MPlayer player = MPlayer.get(event.getPlayer());
-		
-		if (player.getPlayer().getGameMode()==GameMode.CREATIVE) return;
-		
-		MRace playerRace = player.getRace();
-		
-		for (PotionEffectType types : playerRace.getPotionEffects())
-		{
-			PotionEffect playedEffect = new PotionEffect(types, 200, 0);
-			
-			player.getPlayer().addPotionEffect(playedEffect, true);
-		}
 	}
 	
 	@EventHandler(priority=EventPriority.HIGH)
@@ -113,6 +98,33 @@ public class VanillaEngine extends Engine
 		return true;
 	}
 	
+	public void potionRun()
+	{
+		new BukkitRunnable()
+		{
+			public void run()
+			{
+				for (Player players : Bukkit.getOnlinePlayers())
+				{
+					MPlayer player = MPlayer.get(players);
+					
+					if (players.getGameMode()==GameMode.CREATIVE) return;
+					
+					MRace playerRace = player.getRace();
+					
+					for (PotionEffectType types : playerRace.getPotionEffects())
+					{
+						PotionEffect playedEffect = new PotionEffect(types, 200, 0);
+						
+						if (players.hasPotionEffect(types)) continue;
+						
+						players.addPotionEffect(playedEffect, true);
+					}
+				}
+			}
+		}.runTaskTimer(MassiveRaces.get(), 30L, 0L);
+	}
+	
 	protected boolean isSubmerged(Location to)
 	{
 		if (to.getBlock().getType().equals(Material.STATIONARY_WATER) ||
@@ -121,4 +133,11 @@ public class VanillaEngine extends Engine
 		return false;
 	}
 	
+	@Override
+	public void setActiveInner(boolean set)
+	{
+		super.setActiveInner(set);
+		
+		this.potionRun();
+	}
 }
