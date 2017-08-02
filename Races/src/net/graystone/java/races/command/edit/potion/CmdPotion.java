@@ -12,6 +12,11 @@ public class CmdPotion extends RaceCommand
 	public CmdPotion()
 	{
 		this.setDesc("edit potion effects of a race");
+		
+		this.addChild(new CmdPotionAdd());
+		this.addChild(new CmdPotionRemove());
+		
+		
 	}
 	
 	@Override
