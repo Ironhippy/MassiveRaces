@@ -59,6 +59,16 @@ public class MRace extends Entity<MRace>
 	public boolean addPotionEffect(PotionEffectType arg0) { if (containsPotionEffect(arg0)) return false; this.potionEffectTypes.add( arg0.getName() ); this.changed(); return true; }
 	public boolean removePotionEffect(PotionEffectType arg0) { if (!containsPotionEffect(arg0)) return false; this.potionEffectTypes.remove( arg0.getName() ); this.changed(); return true; }
 	public boolean containsPotionEffect(PotionEffectType arg0) { return this.potionEffectTypes.contains( arg0.getName() ); }
+	public List<PotionEffectType> getPotionEffects()
+	{
+		List<PotionEffectType> potionEffects = new MassiveList<PotionEffectType>();
+		for (String all : potionEffectTypes)
+		{
+			potionEffects.add(PotionEffectType.getByName(all));
+		}
+		
+		return potionEffects;
+	}
 	
 	private String particleEffect;
 	public void setParticleEffect(Particle arg0) { this.particleEffect = arg0.name(); this.changed(); }
