@@ -6,7 +6,12 @@ import com.massivecraft.massivecore.command.MassiveCommandHelp;
 import com.massivecraft.massivecore.command.MassiveCommandVersion;
 
 import net.graystone.java.races.MassiveRaces;
-import net.graystone.java.races.command.edit.CmdEdit;
+import net.graystone.java.races.command.edit.CmdEditDefault;
+import net.graystone.java.races.command.edit.CmdEditName;
+import net.graystone.java.races.command.edit.CmdEditSound;
+import net.graystone.java.races.command.edit.particle.CmdParticle;
+import net.graystone.java.races.command.edit.potion.CmdPotion;
+import net.graystone.java.races.command.edit.trait.CmdTrait;
 import net.graystone.java.races.entity.MConf;
 
 public class CmdRace extends RaceCommand
@@ -26,7 +31,13 @@ public class CmdRace extends RaceCommand
 		this.addChild(new CmdCreate());
 		this.addChild(new CmdRemove());
 		
-		this.addChild(new CmdEdit());
+		this.addChild(new CmdEditDefault());
+		this.addChild(new CmdEditName());
+		this.addChild(new CmdEditSound());
+		
+		this.addChild(new CmdParticle());
+		this.addChild(new CmdPotion());
+		this.addChild(new CmdTrait());
 		
 		this.addChild(new MassiveCommandVersion(MassiveRaces.get()));
 	}
