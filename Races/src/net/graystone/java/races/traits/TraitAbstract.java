@@ -1,6 +1,7 @@
 package net.graystone.java.races.traits;
 
 import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 
 import com.massivecraft.massivecore.Engine;
 
@@ -31,6 +32,11 @@ public abstract class TraitAbstract extends Engine implements Trait
 		 || !containsTrait(player.getRace())) return false;
 		
 		return this.meetsRequirementsInner(player);
+	}
+	
+	public void fireEvents(Player player)
+	{
+		return;
 	}
 	
 }
