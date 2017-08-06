@@ -21,8 +21,10 @@ import net.graystone.java.races.entity.MPlayerColl;
 import net.graystone.java.races.entity.MRaceColl;
 import net.graystone.java.races.traits.TraitAbstract;
 import net.graystone.java.races.traits.defaults.TraitBurnRain;
+import net.graystone.java.races.traits.defaults.TraitBurnSunlight;
 import net.graystone.java.races.traits.defaults.TraitFeedDarkness;
 import net.graystone.java.races.traits.defaults.TraitFlyWater;
+import net.graystone.java.races.traits.defaults.TraitGlide;
 import net.graystone.java.races.traits.defaults.TraitPhotosynthesis;
 
 public class MassiveRaces extends MassivePlugin
@@ -54,7 +56,9 @@ public class MassiveRaces extends MassivePlugin
 		this.attach(TraitFlyWater.get(),
 				    TraitPhotosynthesis.get(),
 				    TraitFeedDarkness.get(),
-				    TraitBurnRain.get());
+				    TraitBurnRain.get(),
+				    TraitGlide.get(),
+				    TraitBurnSunlight.get());
 		
 		MRaceColl.get().get(MConf.get().getDefaultRace()).addPotionEffect(PotionEffectType.FAST_DIGGING);
 	}
