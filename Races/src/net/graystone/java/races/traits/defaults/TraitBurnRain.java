@@ -20,7 +20,7 @@ public class TraitBurnRain extends TraitAbstract
 	
 	public TraitBurnRain()
 	{
-		super("burnRain");
+		super("burnRain", false);
 	}
 	
 	@Override

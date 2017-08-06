@@ -16,7 +16,7 @@ public class TraitFlyWater extends TraitAbstract
 	
 	public TraitFlyWater()
 	{
-		super("flyWater");
+		super("flyWater", true);
 	}
 	
 	@Override

@@ -14,9 +14,13 @@ public abstract class TraitAbstract extends Engine implements Trait
 	private String id;
 	public String getId() { return this.id; }
 	
-	public TraitAbstract(String id)
+	private boolean isPositive = false;
+	public boolean isPositive() { return this.isPositive; }
+	
+	public TraitAbstract(String id, boolean isPositive)
 	{
 		this.id = id;
+		this.isPositive = isPositive;
 	}
 	
 	protected boolean containsTrait(MRace race)

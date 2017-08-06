@@ -23,7 +23,7 @@ public class TraitPhotosynthesis extends TraitAbstract
 	
 	public TraitPhotosynthesis()
 	{
-		super("photosynthesis");
+		super("photosynthesis", true);
 	}
 	
 	private Map<String, Integer> registeredTasks = new MassiveMap<String, Integer>();

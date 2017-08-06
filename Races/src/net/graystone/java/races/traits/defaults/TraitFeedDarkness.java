@@ -23,7 +23,7 @@ public class TraitFeedDarkness extends TraitAbstract
 	
 	public TraitFeedDarkness()
 	{
-		super("feedDarkness");
+		super("feedDarkness", true);
 	}
 
 	@Override
