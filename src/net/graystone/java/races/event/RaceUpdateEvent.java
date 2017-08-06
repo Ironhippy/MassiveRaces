@@ -11,7 +11,7 @@ public class RaceUpdateEvent extends EventMassiveCore
 {
 	
 	public static final HandlerList handlers = new HandlerList();
-	public static HandlerList getHandelerList() { return handlers; }
+	public static HandlerList getHandlerList() { return handlers; }
 	public HandlerList getHandlers() { return handlers; }
 	
 	private MPlayer player;
