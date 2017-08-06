@@ -1,5 +1,6 @@
 package net.graystone.java.races.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -11,6 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 import com.massivecraft.massivecore.collections.MassiveList;
 import com.massivecraft.massivecore.store.Entity;
 
+import net.graystone.java.races.MassiveRaces;
 import net.graystone.java.races.traits.TraitAbstract;
 
 public class MRace extends Entity<MRace>
@@ -81,7 +83,17 @@ public class MRace extends Entity<MRace>
 	private List<String> raceTraits = new MassiveList<String>();
 	public void addTrait(TraitAbstract arg0) { this.raceTraits.add(arg0.getId()); this.changed(); }
 	public void removeTrait(TraitAbstract arg0) { this.raceTraits.remove(arg0.getId()); this.changed(); }
-	public List<String> getTraits() { return this.raceTraits; }
+	public List<TraitAbstract> getTraits()
+	{
+		List<TraitAbstract> traitList = new ArrayList<TraitAbstract>();
+		
+		for (String traitStr : raceTraits)
+		{
+			traitList.add(MassiveRaces.get().getTrait(traitStr));
+		}
+		
+		return traitList;
+	}
 	
 	public boolean containsTrait(TraitAbstract arg0) { if (raceTraits.contains(arg0.getId())) return true; return false; }
 	

@@ -5,11 +5,13 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.massivecraft.massivecore.MassiveException;
+import com.massivecraft.massivecore.collections.MassiveList;
 import com.massivecraft.massivecore.util.Txt;
 
 import net.graystone.java.races.command.RaceCommand;
 import net.graystone.java.races.command.type.TypeRace;
 import net.graystone.java.races.entity.MRace;
+import net.graystone.java.races.traits.TraitAbstract;
 
 public class CmdTraitList extends RaceCommand
 {
@@ -27,7 +29,12 @@ public class CmdTraitList extends RaceCommand
 	{
 		MRace targetRace = this.readArg();
 		
-		List<String> traits = targetRace.getTraits();
+		List<String> traits = new MassiveList<String>();
+		
+		for (TraitAbstract all : targetRace.getTraits())
+		{
+			traits.add(all.getId());
+		}
 		
 		String sepVar = StringUtils.join(traits, "<i>, <aqua>");
 		
