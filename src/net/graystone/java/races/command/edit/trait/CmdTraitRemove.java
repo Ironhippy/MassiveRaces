@@ -31,6 +31,6 @@ public class CmdTraitRemove extends RaceCommand
 		
 		targetRace.removeTrait(trait);
 		
-		message(Txt.parse("<i>Successfully removed the <pink>"+trait.toString()+" trait <i>from the <pink>"+targetRace.getName()+" race<i>."));
+		message(Txt.parse("<i>Successfully removed the <pink>"+trait.getId()+" trait <i>from the <pink>"+targetRace.getName()+" race<i>."));
 	}
 }
