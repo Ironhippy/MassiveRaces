@@ -19,7 +19,9 @@ import net.graystone.java.races.entity.MPlayer;
 import net.graystone.java.races.entity.MRace;
 import net.graystone.java.races.event.DryMoveEvent;
 import net.graystone.java.races.event.LightChangeEvent;
+import net.graystone.java.races.event.RaceUpdateEvent;
 import net.graystone.java.races.event.WaterMoveEvent;
+import net.graystone.java.races.traits.TraitAbstract;
 
 public class VanillaEngine extends Engine
 {
@@ -86,6 +88,15 @@ public class VanillaEngine extends Engine
 		
 		WaterMoveEvent calledEvent = new WaterMoveEvent(fromLand, MPlayer.get(event.getPlayer()));
 		calledEvent.run();
+	}
+	
+	@EventHandler
+	public void runEvents(RaceUpdateEvent event)
+	{
+		for (TraitAbstract traits : event.getRace().getTraits())
+		{
+			traits.fireEvents(event.getPlayer().getPlayer());
+		}
 	}
 	
 	public boolean isValid(Location firstLocation, Location secondLocation)
